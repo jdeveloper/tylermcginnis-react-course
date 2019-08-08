@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Popular from './components/Popular.js'
 import './index.css'
 
 class App extends React.Component {
@@ -7,10 +8,9 @@ class App extends React.Component {
         const name = 'Jota'
 
         return (
-            <React.Fragment>
-                <h1>Wellcome back {name}!!</h1>
-                <p>enjoy this site</p>
-            </React.Fragment>
+            <div className="container">
+                <Popular />
+            </div>
         )
     }
 }
