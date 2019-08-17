@@ -2,6 +2,7 @@ import React from 'react'
 import { battle } from '../utils/api'
 import { FaCompass, FaBriefcase, FaUser, FaUserFriends, FaCode, FaUsers } from 'react-icons/fa'
 import Card from './Card'
+import Loading from './Loading'
 
 function ProfileList ({profile}) {
     return (
@@ -68,7 +69,7 @@ export default class Results extends React.Component {
         const { winner, loser, error, loading } = this.state
 
         if(loading) {
-            return <p className='center-text'>LOADING...</p>
+            return <Loading text='Batteling' />
         }
 
         if(error) {
@@ -98,7 +99,7 @@ export default class Results extends React.Component {
                         <ProfileList profile={loser.profile} />
                     </Card>
                 </div>
-                
+
                 <button
                     className="btn dark-btn btn-space"
                     onClick={this.props.onResetBattle}

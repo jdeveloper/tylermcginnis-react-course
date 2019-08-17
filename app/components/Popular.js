@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { fetchPopularRepos } from '../utils/api.js'
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa'
 import Card from './Card'
+import Loading from './Loading'
 
 function LanguagesNav({selected, onUpdateLenguage}) {
     const lenguages = ['All', 'JavaScript', 'PHP', 'Ruby', 'Java', 'CSS', 'Python']
@@ -127,7 +128,7 @@ class Popular extends React.Component {
                         onUpdateLenguage={this.updateLenguage}
                     />
 
-                    {this.isLoading() && <p>LOADING</p>}
+                    {this.isLoading() && <Loading text='Fetching Repos' />}
 
                     {error && <p className="centet-text error">{error}</p>}
 
