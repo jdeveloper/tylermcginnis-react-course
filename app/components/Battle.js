@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaUserFriends, FaFighterJet, FaTrophy, FaTimesCircle } from 'react-icons/fa'
 import PropTypes from 'prop-types'
-import Results from './Results'
 import { ThemeConsumer } from '../contexts/theme'
+import { Link } from 'react-router-dom'
 
 function Instructions () {
     return (
@@ -137,12 +137,9 @@ export default class Battle extends React.Component {
         this.state = {
             playerOne: null,
             playerTwo: null,
-            showBattle: false,
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.showBattle = this.showBattle.bind(this)
-        this.resetBattle = this.resetBattle.bind(this);
     }
 
     handleReset(id) {
@@ -157,24 +154,8 @@ export default class Battle extends React.Component {
         })
     }
 
-    showBattle() {
-        this.setState({ showBattle: true })
-    }
-
-    resetBattle() {
-        this.setState({
-            playerOne: null,
-            playerTwo: null,
-            showBattle: false,
-        });
-    }
-
     render() {
-        const { playerOne, playerTwo, showBattle } = this.state
-
-        if (showBattle) {
-            return <Results playerOne={playerOne} playerTwo={playerTwo} onResetBattle={this.resetBattle} />
-        }
+        const { playerOne, playerTwo } = this.state
 
         return (
             <React.Fragment>
@@ -209,12 +190,15 @@ export default class Battle extends React.Component {
                     </div>
 
                     {playerOne && playerTwo && (
-                        <button
+                        <Link
                             className="btn dark-btn btn-space"
-                            onClick={this.showBattle}
+                            to={{
+                                pathname: '/battle/results',
+                                search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`
+                            }}
                         >
                             Battle
-                        </button>
+                        </Link>
                     )}
                 </div>
             </React.Fragment>

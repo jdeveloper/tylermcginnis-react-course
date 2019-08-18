@@ -17,9 +17,12 @@
   "license": "ISC",
   "dependencies": {
     "prop-types": "^15.7.2",
+    "query-string": "^6.8.2",
+    "r": "0.0.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-icons": "^3.7.0"
+    "react-icons": "^3.7.0",
+    "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

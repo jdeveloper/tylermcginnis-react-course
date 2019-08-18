@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Popular from './components/Popular'
 import Battle from './components/Battle'
+import Results from './components/Results'
 import Nav from './components/Nav'
 import { ThemeProvider } from './contexts/theme'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './index.css'
 
 class App extends React.Component {
@@ -22,14 +24,19 @@ class App extends React.Component {
 
     render() {
         return (
-            <ThemeProvider value={this.state}>
-                <div className={this.state.theme}>
-                    <div className="container">
-                        <Nav />
-                        <Battle />
+            <Router>
+                <ThemeProvider value={this.state}>
+                    <div className={this.state.theme}>
+                        <div className="container">
+                            <Nav />
+
+                            <Route exact={true} path="/" component={Popular} />
+                            <Route exact={true} path="/battle" component={Battle} />
+                            <Route path="/battle/results" component={Results} />
+                        </div>
                     </div>
-                </div>
-            </ThemeProvider>
+                </ThemeProvider>
+            </Router>
         )
     }
 }
