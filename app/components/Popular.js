@@ -79,24 +79,17 @@ ReposGrid.propTypes = {
 }
 
 class Popular extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            selectedLenguage: 'All',
-            repos: {},
-            error: null,
-        }
-
-        this.updateLenguage = this.updateLenguage.bind(this)
-        this.isLoading = this.isLoading.bind(this)
+    state = {
+        selectedLenguage: 'All',
+        repos: {},
+        error: null,
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.updateLenguage(this.state.selectedLenguage)
     }
 
-    updateLenguage(lenguage) {
+    updateLenguage = (lenguage) => {
         this.setState({
             selectedLenguage: lenguage,
             error: null,
@@ -116,13 +109,13 @@ class Popular extends React.Component {
         }
     }
 
-    isLoading() {
+    isLoading = () => {
         const { selectedLenguage, repos, error } = this.state
         
         return !repos[selectedLenguage] && error === null
     }
 
-    render() {
+    render = () => {
         const { selectedLenguage, repos, error } = this.state
         return (
                 <React.Fragment>
