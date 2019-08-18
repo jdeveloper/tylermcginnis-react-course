@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Popular from './components/Popular'
-import Battle from './components/Battle'
-import Results from './components/Results'
 import Nav from './components/Nav'
+import Loading from './components/Loading'
 import { ThemeProvider } from './contexts/theme'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './index.css'
+
+const Popular = React.lazy(() => import('./components/Popular'))
+const Battle = React.lazy(() => import('./components/Battle'))
+const Results = React.lazy(() => import('./components/Results'))
 
 class App extends React.Component {
     constructor(props) {
@@ -30,12 +32,14 @@ class App extends React.Component {
                         <div className="container">
                             <Nav />
 
-                            <Switch>
-                                <Route exact={true} path="/" component={Popular} />
-                                <Route exact={true} path="/battle" component={Battle} />
-                                <Route path="/battle/results" component={Results} />
-                                <Route render={()=>(<h1>404</h1>)} />
-                            </Switch>
+                            <React.Suspense fallback={<Loading />}>
+                                <Switch>
+                                    <Route exact={true} path="/" component={Popular} />
+                                    <Route exact={true} path="/battle" component={Battle} />
+                                    <Route path="/battle/results" component={Results} />
+                                    <Route render={()=>(<h1>404</h1>)} />
+                                </Switch>
+                            </React.Suspense>
                         </div>
                     </div>
                 </ThemeProvider>
