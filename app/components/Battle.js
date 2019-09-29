@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function Instructions () {
     return (
         <ThemeConsumer>
-            {({theme}) => (
+            {(theme) => (
                 <div className='instructions-container'>
                     <h1 className='center-text header-lg'>
                         Instructions
